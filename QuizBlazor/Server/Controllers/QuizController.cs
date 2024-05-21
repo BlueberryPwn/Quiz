@@ -22,7 +22,28 @@ namespace QuizBlazor.Server.Controllers
             _quizRepository = quizRepository;
         }
 
-        [HttpPost("CreateQuiz")]
+        [HttpPost("PostQuestion")]
+        public IActionResult CreateQuestion(QuestionViewModel questionViewModel)
+        {
+            var question = new QuestionModel
+            {
+                QuestionName = questionViewModel.QuestionName,
+                QuestionAnswer = questionViewModel.QuestionAnswer,
+                QuestionOption1 = questionViewModel.QuestionOption1,
+                QuestionOption2 = questionViewModel.QuestionOption2,
+                QuestionOption3 = questionViewModel.QuestionOption3,
+                QuestionOption4 = questionViewModel.QuestionOption4,
+                ImgUrl = questionViewModel.ImgUrl,
+                VidUrl = questionViewModel.VidUrl,
+                QuizId = questionViewModel.QuizId,
+            };
+
+            _context.Questions.Add(question);
+            _context.SaveChanges();
+            return Ok(question);
+        }
+
+        [HttpPost("PostQuiz")]
         public IActionResult CreateQuiz(QuizViewModel quizViewModel)
         {
             var user = _quizRepository.GetUserId();
@@ -46,7 +67,7 @@ namespace QuizBlazor.Server.Controllers
             return Ok(questions);
         }
 
-        [HttpGet("GetUserResult")] // ERROR
+        [HttpGet("GetUserResult")]
         public IActionResult GetUserResult()
         {
             var user = _quizRepository.GetUserId();
@@ -56,7 +77,7 @@ namespace QuizBlazor.Server.Controllers
             return Ok(result);
         }
 
-        [HttpGet("QuizList")]
+        [HttpGet("GetAllQuizzes")]
         public IActionResult GetAllQuizzes()
         {
             var result = _quizRepository.GetAllQuizzes();
@@ -64,7 +85,7 @@ namespace QuizBlazor.Server.Controllers
             return Ok(result);
         }
 
-        [HttpGet("UserQuizList")]
+        [HttpGet("GetUserQuizzes")]
         public IActionResult GetQuizzesByUserId()
         {
             var result = _quizRepository.GetQuizzesByUserId();

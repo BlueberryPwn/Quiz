@@ -1,5 +1,31 @@
-﻿<h3>CreateQuiz</h3>
+﻿@page "/postquiz"
+@inject HttpClient http
+@inject NavigationManager navigation
+
+<h3>Create a quiz!</h3>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="Title"> Title *</label>
+            <input form="Title" class="form-control" @bind="@PostQuiz.QuizTitle" />
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group">
+            <input type="button" class="btn btn-primary" @onclick="@Save" value="Save" />
+        </div>
+    </div>
+</div>
 
 @code {
+    QuizViewModel PostQuiz = new QuizViewModel();
 
+    protected async Task Save()
+    {
+        await http.PostAsJsonAsync("api/Quiz/PostQuiz", PostQuiz);
+        navigation.NavigateTo("profile");
+    }
 }

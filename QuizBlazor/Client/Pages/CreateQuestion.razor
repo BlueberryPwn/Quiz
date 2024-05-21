@@ -1,5 +1,82 @@
-﻿<h3>CreateQuestion</h3>
+﻿@page "/postquestion"
+@inject HttpClient http
+@inject NavigationManager navigation
+
+<h3>Add questions to a quiz!</h3>
+
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="QuestionName"> Question Name *</label>
+            <input form="QuestionName" class="form-control" @bind="PostQuestion.QuestionName" />
+        </div>
+        <div class="form-group">
+            <label for="QuestionOption1"> Option 1 *</label>
+            <input form="Option1" class="form-control" @bind="PostQuestion.QuestionOption1" />
+        </div>
+        <div class="form-group">
+            <label for="QuestionOption2"> Option 2 *</label>
+            <input form="Option2" class="form-control" @bind="PostQuestion.QuestionOption2" />
+        </div>
+        <div class="form-group">
+            <label for="QuestionOption3"> Option 3 *</label>
+            <input form="Option3" class="form-control" @bind="PostQuestion.QuestionOption3" />
+        </div>
+        <div class="form-group">
+            <label for="QuestionOption4"> Option 4 *</label>
+            <input form="Option4" class="form-control" @bind="PostQuestion.QuestionOption4" />
+        </div>
+        <div class="form-group">
+            <label for="ImageUrl"> Image URL </label>
+            <input form="ImageUrl" class="form-control" @bind="PostQuestion.ImgUrl" />
+        </div>
+        <div class="form-group">
+            <label for="VideoUrl"> Video URL </label>
+            <input form="VideoUrl" class="form-control" @bind="PostQuestion.VidUrl" />
+        </div>
+        <div class="form-group">
+            <label for="CorrectAnswer"> Correct Answer *</label>
+            <input form="CorrectAnswer" class="form-control" @bind="PostQuestion.QuestionAnswer" />
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="QuizId"> Quiz *</label>
+                <select class="form-select" @bind="@PostQuestion.QuizId" aria-label="Default select example">
+                    @foreach (var item in GetQuizzesByUserId)
+                    {
+                        <option value="@item.QuizId">@item.QuizTitle</option>
+
+                    }
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group">
+            <input type="button" class="btn btn-primary" @onclick="@Save" value="Create Quiz" />
+        </div>
+    </div>
+</div>
 
 @code {
 
+    [Parameter]
+    public int QuestionId { get; set; }
+
+    QuestionViewModel PostQuestion = new QuestionViewModel();
+    List<QuizViewModel> GetQuizzesByUserId = new List<QuizViewModel>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        GetQuizzesByUserId = await http.GetFromJsonAsync<List<QuizViewModel>>("api/Quiz/GetUserQuizzes");
+    }
+
+    protected async Task Save()
+    {
+        await http.PostAsJsonAsync("api/Quiz/PostQuestion", PostQuestion);
+        navigation.NavigateTo("profile");
+    }
 }

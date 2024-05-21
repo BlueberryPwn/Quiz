@@ -1,17 +1,13 @@
 ﻿@page "/profile"
 @inject HttpClient http
 
-<a href="/addquiz">Create quiz</a>
+<h3>Your quizzes</h3>
 <br />
-<a href="/addquestion">Add question</a>
-<hr />
-<h3>Quizzes</h3>
-<br />
+
 @if (Quizzes.Count() < 0)
 {
     <h1>You haven't created any quizzes yet.</h1>
 }
-
 else
 {
     <ul>
@@ -29,7 +25,6 @@ else
 {
     <h4>This list is empty.</h4>
 }
-
 else
 {
     <table class="table">
@@ -37,7 +32,7 @@ else
             <tr>
                 <th>Quiz</th>
                 <th>User</th>
-                <th>GamePoint</th>
+                <th>Score</th>
             </tr>
         </thead>
         <tbody>
@@ -59,7 +54,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        Quizzes = await http.GetFromJsonAsync<List<QuizViewModel>>("api/Quiz/UserQuizList");
+        Quizzes = await http.GetFromJsonAsync<List<QuizViewModel>>("api/Quiz/GetUserQuizzes");
         Results = await http.GetFromJsonAsync<List<ResultViewModel>>("api/Quiz/GetUserResult");
     }
 }

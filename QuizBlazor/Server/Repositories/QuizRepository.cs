@@ -1,4 +1,5 @@
 ﻿using QuizBlazor.Server.Data;
+using QuizBlazor.Server.Models;
 using QuizBlazor.Shared.ViewModels;
 using System.Security.Claims;
 
