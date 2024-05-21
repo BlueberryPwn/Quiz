@@ -1,0 +1,9 @@
+# Ignore any files in /bin and /obj Folders
+**/bin/*
+**/obj/*
+.vs/
+.sln/
+**/Service/*
+QuizBlazor/.vs
+Appsettings.json
+Appsettings.Development.json
