@@ -95,6 +95,7 @@ C:\Users\nshoa\Documents\Projects\QuizBlazor\QuizBlazor\Server\obj\Debug\net6.0\
 C:\Users\nshoa\Documents\Projects\QuizBlazor\QuizBlazor\Server\obj\Debug\net6.0\QuizBlazor.Server.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\nshoa\Documents\Projects\QuizBlazor\QuizBlazor\Server\obj\Debug\net6.0\QuizBlazor.Server.RazorAssemblyInfo.cache
 C:\Users\nshoa\Documents\Projects\QuizBlazor\QuizBlazor\Server\obj\Debug\net6.0\QuizBlazor.Server.RazorAssemblyInfo.cs
+C:\Users\nshoa\Documents\Projects\QuizBlazor\QuizBlazor\Server\obj\Debug\net6.0\QuizBlazor.Server.sourcelink.json
 C:\Users\nshoa\Documents\Projects\QuizBlazor\QuizBlazor\Server\obj\Debug\net6.0\staticwebassets.build.json
 C:\Users\nshoa\Documents\Projects\QuizBlazor\QuizBlazor\Server\obj\Debug\net6.0\staticwebassets.development.json
 C:\Users\nshoa\Documents\Projects\QuizBlazor\QuizBlazor\Server\obj\Debug\net6.0\staticwebassets\msbuild.QuizBlazor.Server.Microsoft.AspNetCore.StaticWebAssets.props

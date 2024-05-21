@@ -37,5 +37,21 @@ namespace QuizBlazor.Server.Controllers
             _context.SaveChanges();
             return Ok(quiz);
         }
+
+        [HttpGet("GetQuestionsByQuizId/{QuizId}")]
+        public IActionResult GetQuestionsByQuizId(int QuizId)
+        {
+            var questions = _quizRepository.GetQuestionsByQuizId(QuizId);
+
+            return Ok(questions);
+        }
+
+        [HttpGet("QuizList")]
+        public IActionResult QuizList()
+        {
+            var result = _quizRepository.GetAllQuizzes();
+
+            return Ok(result);
+        }
     }
 }

@@ -6,6 +6,8 @@
 
 <AuthorizeView>
     <Authorized>
+        <a href="CreateQuiz">Create quiz</a>
+        <a href="QuizList">Quiz list</a>
         <a href="authentication/profile">Hello, @context.User.Identity?.Name!</a>
         <button class="nav-link btn btn-link" @onclick="BeginSignOut">Log out</button>
     </Authorized>

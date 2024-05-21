@@ -1,7 +1,7 @@
 {
   "entryAssembly": "QuizBlazor.Client",
   "resources": {
-    "hash": "sha256-B8qEHVLjIcKFu0dpWmvF5L5twFh3HlFuX9JshETuLSg=",
+    "hash": "sha256-PcHGj9fD/PXJZ4xSSrepdP0+rCTmcO0cWPUpilAB8+8=",
     "runtime": {
       "dotnet.6.0.28.achu79wikm.js": "sha256-PYXBt6AuhzWXVEEyGsbAwIvVsAbcDs2FnKYIkVYqLqA=",
       "dotnet.timezones.blat": "sha256-hKZ27N25m01CP4HR0RFvVj2dU0Cw2+EqatmI4zCXdHc=",
@@ -203,12 +203,12 @@
       "mscorlib.dll": "sha256-5c+M6kT5xF9IJ6/416Uyje0rLaSDyuA3IO3sl1gZFD4=",
       "netstandard.dll": "sha256-dNc8HG6nSitRZLGm62pNV31OxqYD8cZWMQdEiEY2PoI=",
       "System.Private.CoreLib.dll": "sha256-DY0iniEv267nIHL2QYLumeOp/cacu4sjj6qQTgznF3A=",
-      "QuizBlazor.Shared.dll": "sha256-jdAJAStZ3mO4DAtYgnEgYdn1FpuGXwKslEaDa0pVw/Y=",
-      "QuizBlazor.Client.dll": "sha256-2iXCteJCY0RzZvjWTzbtSBFhOX+7x5bu2D6dxxJuyZw="
+      "QuizBlazor.Shared.dll": "sha256-v3OotAvjPbQ0qVPzi6MGYGWkbDhe1mxRVjHZJkOALdU=",
+      "QuizBlazor.Client.dll": "sha256-+awZHEGtPv8mrWLDzZUcNEUtbdUijzbT/8wXhkoAkSU="
     },
     "pdb": {
-      "QuizBlazor.Shared.pdb": "sha256-XL2jzbOogmbYRw04Xm1498nb5bYVb2QYwaSbE1fBXH8=",
-      "QuizBlazor.Client.pdb": "sha256-q1DKY4Sj6S9uBJd0RzgCDiJd/7BryOcHz+IyskiI4uU="
+      "QuizBlazor.Shared.pdb": "sha256-zKJwOzzeQx2VaLTNzHxXIDerXvxt78oZYa/NhNCmnPc=",
+      "QuizBlazor.Client.pdb": "sha256-Ila9VJH7bxIZLxSRHnBeI964d4WszVMK5HwO7O6f9Hw="
     },
     "runtimeAssets": {
       "dotnet.wasm": {

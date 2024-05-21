@@ -615,6 +615,7 @@ C:\Users\nshoa\Documents\Projects\QuizBlazor\QuizBlazor\Client\obj\Debug\net6.0\
 C:\Users\nshoa\Documents\Projects\QuizBlazor\QuizBlazor\Client\obj\Debug\net6.0\QuizBlazor.Client.AssemblyInfo.cs
 C:\Users\nshoa\Documents\Projects\QuizBlazor\QuizBlazor\Client\obj\Debug\net6.0\QuizBlazor.Client.csproj.CoreCompileInputs.cache
 C:\Users\nshoa\Documents\Projects\QuizBlazor\QuizBlazor\Client\obj\Debug\net6.0\QuizBlazor.Client.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\nshoa\Documents\Projects\QuizBlazor\QuizBlazor\Client\obj\Debug\net6.0\QuizBlazor.Client.sourcelink.json
 C:\Users\nshoa\Documents\Projects\QuizBlazor\QuizBlazor\Client\obj\Debug\net6.0\blazor.build.boot-extension.json
 C:\Users\nshoa\Documents\Projects\QuizBlazor\QuizBlazor\Client\obj\Debug\net6.0\blazor.boot.json
 C:\Users\nshoa\Documents\Projects\QuizBlazor\QuizBlazor\Client\obj\Debug\net6.0\staticwebassets.build.json
