@@ -8,5 +8,10 @@ namespace QuizBlazor.Shared.ViewModels
 {
     public class ResultViewModel
     {
+        public int QuizId { get; set; }
+        public string Quiz {  get; set; }
+        public int GamePoint {  get; set; }
+        public string UserId { get; set; }
+        public string User {  get; set; }
     }
 }

@@ -27,7 +27,7 @@ namespace QuizBlazor.Server.Repositories
         public List<QuestionViewModel> GetQuestionsByQuizId(int QuizId)
         {
             return _context.Questions
-                .Where(q =>  q.QuizId == QuizId)
+                .Where(q => q.QuizId == QuizId)
                 .Select(q => new QuestionViewModel
                 {
                     QuestionId = q.QuizId,
@@ -44,9 +44,35 @@ namespace QuizBlazor.Server.Repositories
                 .ToList();
         }
 
+        public List<QuizViewModel> GetQuizzesByUserId()
+        {
+            return _context.Quizzes
+                .Where(q => q.UserId == q.UserId)
+                .Select(q => new QuizViewModel
+                {
+                    QuizId = q.QuizId,
+                    QuizTitle = q.QuizTitle
+                })
+                .ToList();
+        }
+
         public string GetUserId(ClaimsPrincipal user)
         {
             return user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        }
+
+        public List<ResultViewModel> GetUserResult(string UserId)
+        {
+            return _context.Quizzes
+                .Where(q => q.UserId == UserId)
+                .Join(_context.Games, q => q.QuizId, g => g.QuizId, (q, g) => new { Quiz = q, Game = g })
+                .Join(_context.Users, q => q.Game.UserId, u => u.Id, (q, u) => new ResultViewModel
+                {
+                    Quiz = q.Quiz.QuizTitle,
+                    User = u.UserName,
+                    GamePoint = q.Game.GamePoint,
+                })
+                .ToList();
         }
     }
 }

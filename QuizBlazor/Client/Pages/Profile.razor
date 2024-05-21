@@ -1,5 +1,65 @@
-﻿<h3>Profile</h3>
+﻿@page "/profile"
+@inject HttpClient http
+
+<a href="/addquiz">Create quiz</a>
+<br />
+<a href="/addquestion">Add question</a>
+<hr />
+<h3>Quizzes</h3>
+<br />
+@if (Quizzes.Count() < 0)
+{
+    <h1>You haven't created any quizzes yet.</h1>
+}
+
+else
+{
+    <ul>
+        @foreach (var item in Quizzes)
+        {
+            <li>@item.QuizTitle</li>
+        }
+    </ul>
+}
+
+<h3>Your results</h3>
+<br />
+
+@if (Results.Count() < 0)
+{
+    <h4>This list is empty.</h4>
+}
+
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Quiz</th>
+                <th>User</th>
+                <th>GamePoint</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Results)
+            {
+                <tr>
+                    <td>@item.Quiz</td>
+                    <td>@item.User</td>
+                    <td>@item.GamePoint</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
 
 @code {
+    List<QuizViewModel> Quizzes = new List<QuizViewModel>();
+    List<ResultViewModel> Results = new List<ResultViewModel>();
 
+    protected override async Task OnInitializedAsync()
+    {
+        Quizzes = await http.GetFromJsonAsync<List<QuizViewModel>>("api/Quiz/UserQuizList");
+        Results = await http.GetFromJsonAsync<List<ResultViewModel>>("api/Quiz/GetUserResult");
+    }
 }

@@ -8,5 +8,7 @@ namespace QuizBlazor.Server.Repositories
         List<QuizViewModel> GetAllQuizzes();
         List<QuestionViewModel> GetQuestionsByQuizId(int QuizId);
         string GetUserId(ClaimsPrincipal user);
+        List<ResultViewModel> GetUserResult(string UserId);
+        List<QuizViewModel> GetQuizzesByUserId();
     }
 }

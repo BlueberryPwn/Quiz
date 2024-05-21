@@ -46,10 +46,26 @@ namespace QuizBlazor.Server.Controllers
             return Ok(questions);
         }
 
+        [HttpGet("GetUserResult")]
+        public IActionResult GetUserResult(string UserId)
+        {
+            var result = _quizRepository.GetUserResult(UserId);
+
+            return Ok(result);
+        }
+
         [HttpGet("QuizList")]
-        public IActionResult QuizList()
+        public IActionResult GetAllQuizzes()
         {
             var result = _quizRepository.GetAllQuizzes();
+
+            return Ok(result);
+        }
+
+        [HttpGet("UserQuizList")]
+        public IActionResult GetQuizzesByUserId()
+        {
+            var result = _quizRepository.GetQuizzesByUserId();
 
             return Ok(result);
         }
