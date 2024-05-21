@@ -1,0 +1,11 @@
+C:\Users\nshoa\Documents\Projects\QuizBlazor\QuizBlazor\Shared\bin\Debug\net6.0\QuizBlazor.Shared.deps.json
+C:\Users\nshoa\Documents\Projects\QuizBlazor\QuizBlazor\Shared\bin\Debug\net6.0\QuizBlazor.Shared.dll
+C:\Users\nshoa\Documents\Projects\QuizBlazor\QuizBlazor\Shared\bin\Debug\net6.0\QuizBlazor.Shared.pdb
+C:\Users\nshoa\Documents\Projects\QuizBlazor\QuizBlazor\Shared\obj\Debug\net6.0\QuizBlazor.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nshoa\Documents\Projects\QuizBlazor\QuizBlazor\Shared\obj\Debug\net6.0\QuizBlazor.Shared.AssemblyInfoInputs.cache
+C:\Users\nshoa\Documents\Projects\QuizBlazor\QuizBlazor\Shared\obj\Debug\net6.0\QuizBlazor.Shared.AssemblyInfo.cs
+C:\Users\nshoa\Documents\Projects\QuizBlazor\QuizBlazor\Shared\obj\Debug\net6.0\QuizBlazor.Shared.csproj.CoreCompileInputs.cache
+C:\Users\nshoa\Documents\Projects\QuizBlazor\QuizBlazor\Shared\obj\Debug\net6.0\QuizBlazor.Shared.dll
+C:\Users\nshoa\Documents\Projects\QuizBlazor\QuizBlazor\Shared\obj\Debug\net6.0\refint\QuizBlazor.Shared.dll
+C:\Users\nshoa\Documents\Projects\QuizBlazor\QuizBlazor\Shared\obj\Debug\net6.0\QuizBlazor.Shared.pdb
+C:\Users\nshoa\Documents\Projects\QuizBlazor\QuizBlazor\Shared\obj\Debug\net6.0\ref\QuizBlazor.Shared.dll
