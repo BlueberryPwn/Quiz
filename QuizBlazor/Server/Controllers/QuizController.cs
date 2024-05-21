@@ -22,6 +22,48 @@ namespace QuizBlazor.Server.Controllers
             _quizRepository = quizRepository;
         }
 
+        [HttpGet("GetQuestionsByQuizId/{QuizId}")]
+        public IActionResult GetQuestionsByQuizId(int QuizId)
+        {
+            var questions = _quizRepository.GetQuestionsByQuizId(QuizId);
+
+            return Ok(questions);
+        }
+
+        [HttpGet("GetUserResult")]
+        public IActionResult GetUserResult()
+        {
+            var user = _quizRepository.GetUserId();
+
+            var result = _quizRepository.GetUserResult();
+
+            return Ok(result);
+        }
+
+        [HttpGet("GetAllQuizzes")]
+        public IActionResult GetAllQuizzes()
+        {
+            var result = _quizRepository.GetAllQuizzes();
+
+            return Ok(result);
+        }
+
+        [HttpGet("GetUserId")]
+        public IActionResult GetUserId()
+        {
+            var user = _quizRepository.GetUserId();
+
+            return Ok(user);
+        }
+
+        [HttpGet("GetUserQuizzes")]
+        public IActionResult GetQuizzesByUserId()
+        {
+            var result = _quizRepository.GetQuizzesByUserId();
+
+            return Ok(result);
+        }
+
         [HttpPost("PostQuestion")]
         public IActionResult CreateQuestion(QuestionViewModel questionViewModel)
         {
@@ -59,38 +101,50 @@ namespace QuizBlazor.Server.Controllers
             return Ok(quiz);
         }
 
-        [HttpGet("GetQuestionsByQuizId/{QuizId}")]
-        public IActionResult GetQuestionsByQuizId(int QuizId)
+        [HttpPost("Quiz/{QuizId}")]
+        public IActionResult StartQuiz(int QuizId, GameViewModel gameViewModel)
         {
-            var questions = _quizRepository.GetQuestionsByQuizId(QuizId);
+            var userId = _quizRepository.GetUserId();
 
-            return Ok(questions);
+            var game = _quizRepository.GetGameByQuizIdAndUserId(QuizId, userId);
+
+            if (game == null)
+            {
+                var newGame = new GameModel
+                {
+                    GamePoint = gameViewModel.GamePoint,
+                    QuizId = QuizId,
+                    UserId = userId
+                };
+
+                _context.Games.Add(newGame);
+                _context.SaveChanges();
+            }
+            else
+            {
+                game.GamePoint += gameViewModel.GamePoint;
+                _context.SaveChanges();
+            }
+
+            return Ok();
         }
 
-        [HttpGet("GetUserResult")]
-        public IActionResult GetUserResult()
+        [HttpPost("SaveGame/{quizId}")]
+        public IActionResult SaveGame(int quizId, GameViewModel gameViewModel)
         {
-            var user = _quizRepository.GetUserId();
+            var userId = _quizRepository.GetUserId();
 
-            var result = _quizRepository.GetUserResult();
+            var game = new GameModel
+            {
+                GamePoint = gameViewModel.GamePoint,
+                QuizId = quizId,
+                UserId = userId
+            };
 
-            return Ok(result);
-        }
+            _context.Games.Add(game);
+            _context.SaveChanges();
 
-        [HttpGet("GetAllQuizzes")]
-        public IActionResult GetAllQuizzes()
-        {
-            var result = _quizRepository.GetAllQuizzes();
-
-            return Ok(result);
-        }
-
-        [HttpGet("GetUserQuizzes")]
-        public IActionResult GetQuizzesByUserId()
-        {
-            var result = _quizRepository.GetQuizzesByUserId();
-
-            return Ok(result);
+            return Ok();
         }
     }
 }

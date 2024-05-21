@@ -1,5 +1,101 @@
-﻿<h3>Game</h3>
+﻿@page "/game/{QuizId:int}"
+@inject HttpClient http
+@inject NavigationManager navigation
+
+@if (QuestionList.Any())
+{
+    var question = QuestionList[currentIndex];
+
+    <h3>@question.QuestionName</h3>
+
+    if (question.ImgUrl != null)
+    {
+        <img src="@question.ImgUrl" />
+    }
+
+    if (question.VidUrl != null)
+    {
+        <iframe src="@question.VidUrl"></iframe>
+    }
+
+    if (question.QuestionOption1 != null)
+    {
+        <select class="form-select" aria-label="Default select example" @bind="SelectValue">
+            <option value="@question.QuestionOption1">@question.QuestionOption1</option>
+            <option value="@question.QuestionOption2">@question.QuestionOption2</option>
+            <option value="@question.QuestionOption3">@question.QuestionOption3</option>
+            <option value="@question.QuestionOption4">@question.QuestionOption4</option>
+        </select>
+    }
+    else
+    {
+        <input form="Freetext" class="form-control" @bind="SelectValue" />
+    }
+
+    <input type="button" class="btn btn-primary" @onclick="@Save" value="Answer" />
+    <p>Remaining time: @Timer</p>
+}
+else
+{
+    <h2>There aren't any questions available for this quiz.</h2>
+}
 
 @code {
 
+    [Parameter]
+    public int QuizId { get; set; }
+    public string SelectValue { get; set; }
+    int currentIndex = 0;
+    int Timer = 200;
+
+    List<QuestionViewModel> QuestionList = new List<QuestionViewModel>();
+    GameViewModel NewGame = new GameViewModel();
+
+    protected override async Task OnInitializedAsync()
+    {
+        QuestionList = await http.GetFromJsonAsync<List<QuestionViewModel>>($"api/Quiz/GetQuestionsByQuizId/{QuizId}");
+        StartTimerAsync();
+    }
+
+    protected async Task Save()
+    {
+        if (SelectValue == QuestionList[currentIndex].QuestionAnswer)
+        {
+            NewGame.GamePoint += 1;
+        }
+
+        if (currentIndex == QuestionList.Count - 1)
+        {
+            await http.PostAsJsonAsync($"api/Quiz/SaveGame/{QuizId}", NewGame);
+        }
+
+        NextQuestion();
+    }
+
+    public async void StartTimerAsync()
+    {
+        while (Timer > 0)
+        {
+            Timer--;
+            StateHasChanged();
+            await Task.Delay(1000);
+        }
+
+        if (Timer == 0)
+        {
+            navigation.NavigateTo("profile");
+        }
+    }
+
+
+    public void NextQuestion()
+    {
+        currentIndex++;
+
+        if (currentIndex >= QuestionList.Count())
+        {
+            navigation.NavigateTo("profile");
+        }
+
+    }
 }

@@ -4,7 +4,7 @@
 <h3>Your quizzes</h3>
 <br />
 
-@if (Quizzes.Count() < 0)
+@if (Quizzes.Count() < 1)
 {
     <h1>You haven't created any quizzes yet.</h1>
 }
@@ -13,7 +13,9 @@ else
     <ul>
         @foreach (var item in Quizzes)
         {
-            <li>@item.QuizTitle</li>
+            <li>
+                <a href="game/@item.QuizId">@item.QuizTitle</a>
+            </li>
         }
     </ul>
 }
@@ -21,7 +23,7 @@ else
 <h3>Your results</h3>
 <br />
 
-@if (Results.Count() < 0)
+@if (Results.Count() < 1)
 {
     <h4>This list is empty.</h4>
 }

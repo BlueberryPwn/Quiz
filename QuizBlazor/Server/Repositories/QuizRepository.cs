@@ -27,6 +27,11 @@ namespace QuizBlazor.Server.Repositories
                 .ToList();
         }
 
+        public GameModel GetGameByQuizIdAndUserId(int QuizId, string UserId)
+        {
+            return _context.Games.FirstOrDefault(g => g.QuizId == QuizId && g.UserId == UserId);
+        }
+
         public List<QuestionViewModel> GetQuestionsByQuizId(int QuizId)
         {
             return _context.Questions
@@ -62,6 +67,15 @@ namespace QuizBlazor.Server.Repositories
         public string GetUserId()
         {
             return _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        }
+
+        public int GetQuizId(int QuizId)
+        {
+            var userId = GetUserId();
+
+            var game = _context.Games.FirstOrDefault(x => x.QuizId == QuizId && x.UserId == userId);
+
+            return game.QuizId;
         }
 
         public List<ResultViewModel> GetUserResult()
