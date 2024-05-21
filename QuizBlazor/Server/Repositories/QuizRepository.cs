@@ -7,10 +7,12 @@ namespace QuizBlazor.Server.Repositories
     public class QuizRepository : IQuizRepository
     {
         private readonly ApplicationDbContext _context;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public QuizRepository(ApplicationDbContext context)
+        public QuizRepository(ApplicationDbContext context, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public List<QuizViewModel> GetAllQuizzes()
@@ -56,15 +58,17 @@ namespace QuizBlazor.Server.Repositories
                 .ToList();
         }
 
-        public string GetUserId(ClaimsPrincipal user)
+        public string GetUserId()
         {
-            return user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            return _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         }
 
-        public List<ResultViewModel> GetUserResult(string UserId)
+        public List<ResultViewModel> GetUserResult()
         {
+            var userId = GetUserId();
+
             return _context.Quizzes
-                .Where(q => q.UserId == UserId)
+                .Where(q => q.UserId == userId)
                 .Join(_context.Games, q => q.QuizId, g => g.QuizId, (q, g) => new { Quiz = q, Game = g })
                 .Join(_context.Users, q => q.Game.UserId, u => u.Id, (q, u) => new ResultViewModel
                 {

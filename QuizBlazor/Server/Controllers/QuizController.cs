@@ -25,7 +25,7 @@ namespace QuizBlazor.Server.Controllers
         [HttpPost("CreateQuiz")]
         public IActionResult CreateQuiz(QuizViewModel quizViewModel)
         {
-            var user = _quizRepository.GetUserId(User);
+            var user = _quizRepository.GetUserId();
 
             var quiz = new QuizModel
             {
@@ -46,10 +46,12 @@ namespace QuizBlazor.Server.Controllers
             return Ok(questions);
         }
 
-        [HttpGet("GetUserResult")]
-        public IActionResult GetUserResult(string UserId)
+        [HttpGet("GetUserResult")] // ERROR
+        public IActionResult GetUserResult()
         {
-            var result = _quizRepository.GetUserResult(UserId);
+            var user = _quizRepository.GetUserId();
+
+            var result = _quizRepository.GetUserResult();
 
             return Ok(result);
         }
