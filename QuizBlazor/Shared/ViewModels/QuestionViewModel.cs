@@ -17,6 +17,7 @@ namespace QuizBlazor.Shared.ViewModels
         public string? QuestionOption4 { get; set; }
         public string? ImgUrl { get; set; }
         public string? VidUrl { get; set; }
+        public bool? TimeLimit { get; set; }
         public int QuizId { get; set; }
     }
 }

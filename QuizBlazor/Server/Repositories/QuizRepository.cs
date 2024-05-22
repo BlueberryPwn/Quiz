@@ -47,6 +47,7 @@ namespace QuizBlazor.Server.Repositories
                     QuestionOption4 = q.QuestionOption4,
                     ImgUrl = q.ImgUrl,
                     VidUrl = q.VidUrl,
+                    TimeLimit = q.TimeLimit,
                     QuizId = QuizId
                 })
                 .ToList();

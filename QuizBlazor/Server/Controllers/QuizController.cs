@@ -77,6 +77,7 @@ namespace QuizBlazor.Server.Controllers
                 QuestionOption4 = questionViewModel.QuestionOption4,
                 ImgUrl = questionViewModel.ImgUrl,
                 VidUrl = questionViewModel.VidUrl,
+                TimeLimit = questionViewModel.TimeLimit,
                 QuizId = questionViewModel.QuizId,
             };
 

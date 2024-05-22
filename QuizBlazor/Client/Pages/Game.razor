@@ -2,9 +2,9 @@
 @inject HttpClient http
 @inject NavigationManager navigation
 
-@if (QuestionList.Any())
+@if (Questions.Any())
 {
-    var question = QuestionList[currentIndex];
+    var question = Questions[currentIndex];
 
     <h3>@question.QuestionName</h3>
 
@@ -20,7 +20,7 @@
 
     if (question.QuestionOption1 != null)
     {
-        <select class="form-select" aria-label="Default select example" @bind="SelectValue">
+        <select class="form-select" aria-label="Default select example" @bind="Selection">
             <option value="@question.QuestionOption1">@question.QuestionOption1</option>
             <option value="@question.QuestionOption2">@question.QuestionOption2</option>
             <option value="@question.QuestionOption3">@question.QuestionOption3</option>
@@ -29,11 +29,15 @@
     }
     else
     {
-        <input form="Freetext" class="form-control" @bind="SelectValue" />
+        <input form="Freetext" class="form-control" @bind="Selection" />
     }
 
     <input type="button" class="btn btn-primary" @onclick="@Save" value="Answer" />
-    <p>Remaining time: @Timer</p>
+    
+    if (question.TimeLimit == true)
+    {
+        <p>Remaining time: @Timer</p>
+    }
 }
 else
 {
@@ -44,27 +48,27 @@ else
 
     [Parameter]
     public int QuizId { get; set; }
-    public string SelectValue { get; set; }
+    public string Selection { get; set; }
     int currentIndex = 0;
-    int Timer = 200;
+    int Timer = 60;
 
-    List<QuestionViewModel> QuestionList = new List<QuestionViewModel>();
+    List<QuestionViewModel> Questions = new List<QuestionViewModel>();
     GameViewModel NewGame = new GameViewModel();
 
     protected override async Task OnInitializedAsync()
     {
-        QuestionList = await http.GetFromJsonAsync<List<QuestionViewModel>>($"api/Quiz/GetQuestionsByQuizId/{QuizId}");
+        Questions = await http.GetFromJsonAsync<List<QuestionViewModel>>($"api/Quiz/GetQuestionsByQuizId/{QuizId}");
         StartTimerAsync();
     }
 
     protected async Task Save()
     {
-        if (SelectValue == QuestionList[currentIndex].QuestionAnswer)
+        if (Selection == Questions[currentIndex].QuestionAnswer)
         {
             NewGame.GamePoint += 1;
         }
 
-        if (currentIndex == QuestionList.Count - 1)
+        if (currentIndex == Questions.Count - 1)
         {
             await http.PostAsJsonAsync($"api/Quiz/SaveGame/{QuizId}", NewGame);
         }
@@ -87,15 +91,13 @@ else
         }
     }
 
-
     public void NextQuestion()
     {
         currentIndex++;
 
-        if (currentIndex >= QuestionList.Count())
+        if (currentIndex >= Questions.Count())
         {
             navigation.NavigateTo("profile");
         }
-
     }
 }

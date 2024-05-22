@@ -12,6 +12,10 @@
             <input form="QuestionName" class="form-control" @bind="PostQuestion.QuestionName" />
         </div>
         <div class="form-group">
+            <label for="TimeLimitCheckbox">Enable Time Limit?</label>
+            <input type="checkbox" @bind="PostQuestion.TimeLimit" />
+        </div>
+        <div class="form-group">
             <label for="QuestionOption1"> Option 1 *</label>
             <input form="Option1" class="form-control" @bind="PostQuestion.QuestionOption1" />
         </div>
