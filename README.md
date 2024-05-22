@@ -26,6 +26,7 @@ This is a Blazor WebAssembly application where users can...
 
 - Controllers: Handles the backend logic. Logic is mostly stored in repositories and injected into the controllers to keep them thin.
 - Models: This application utilizes both model and viewmodel classes.
+- Pages: The frontend logic is stored within the .razor pages inside the client.
 - Repositories: This application follows the repository pattern by storing majority of the logic inside repositories. The repositories are then injected into the controllers and their methods called when needed.
 
 ## Database
